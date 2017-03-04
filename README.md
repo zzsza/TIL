@@ -21,6 +21,12 @@
 
 - [Google Cloud Platform](https://github.com/zzsza/TIL/tree/master/Google%20Cloud%20Platform)
 
+- [python](https://github.com/zzsza/TIL/tree/master/python)
+
+- [mac](https://github.com/zzsza/TIL/tree/master/mac)
+
+
+
 
 # Reference
 [유림님 TIL](https://github.com/milooy/TIL#today-i-learned)
