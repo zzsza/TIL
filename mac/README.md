@@ -10,3 +10,6 @@
 sudo spctl --master-disable
 ~~~
 - 그 후, app market에서 update
+
+- zsh 설치 [진한이형 블로그](http://hjh5488.tistory.com/2)
+- 폰트가 깨지는 경우 [meslo](https://github.com/powerline/fonts/blob/master/Meslo/Meslo%20LG%20M%20DZ%20Regular%20for%20Powerline.otf) 설치 후 설정
