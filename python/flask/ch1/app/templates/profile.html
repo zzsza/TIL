@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+        <title>{{user.name}}님의 프로필</title>
+
+        <!-- 부트스트랩 코어 CSS -->
+        <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
+        <!-- 커스텀 스타일 : 이파일을 수정하세요. -->
+        <link href="{{ url_for('static', filename='css/custom-profile.css') }}" rel="stylesheet">
+
+    </head>
+
+    <body style="padding-top: 70px;">
+
+        <!-- 네비게이션 부분 -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- 브랜드와 토글을 모바일을 위해 그룹화 합니다. -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">ABCD</a>
+                {% if session.logged_in %}
+                    <p class="navbar-text">{{session.name}}님 환영합니다.</p>
+                {% endif %}
+            </div>
+
+            <!-- 토글되는 네비게이션 링크들, 폼, 기타 콘텐츠를 모아놓습니다. -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    {% if not session.logged_in %}
+                        <li><a href="/login-form">로그인</a></li>
+                    {% else %}
+                        <li><a href="/logout">로그아웃</a></li>
+                    {% endif %}
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right"></ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <!-- 개인정보 부분 -->
+                <!-- xs 18, md 12 -->
+                <div class="col-md-4">
+                    <div class="well">
+                        <img src="{{ url_for('static', filename=user.image) }}" class="img-thumbnail img-responsive" style="width:100%; " alt="{{user.name}}" />
+                        <h3>{{user.name}}</h3>
+                        <h5>{{user.company}}</h5>
+                        <div><span class="glyphicon glyphicon-star"></span> 전화 : {{user.tel}} </div>
+                        <div><span class="glyphicon glyphicon-star"></span> 성별 : {{user.gender}} </div>
+                        <div><span class="glyphicon glyphicon-star"></span> 지역 : {{user.location}} </div>
+                        <h5>{{user.description}}</h5>
+                    </div>
+                </div>
+
+                <!-- 컨텐츠 부분 -->
+                <div class="col-md-8">
+
+                    {% if session.logged_in %}
+                        <!-- 입력 부분 -->
+                        <div class="well">
+                            <form class="form-signin" action="/add/{{userId}}" method="post">
+                                <textarea class="form-control" name="contents" rows="3" placeholder="오늘 어때요?"></textarea>
+                                <button type="submit" class="btn btn-primary btn-block">글쓰기</button>
+                            </form>
+                        </div>
+                    {% endif %}
+
+                    <!-- 컨텐츠 부분 : loop -->
+                    <div class="well">
+                        {% for item in posts %}
+                        <div class="media">
+                            <a class="pull-left" href="/profile/{{item.users.id}}">
+                                <img class="media-object img-rounded " alt="{{item.users.name}}'s photo" src="{{ url_for('static', filename=item.users.image) }}" style="width: 64px; height: 64px;">
+                            </a>
+                            <div class="media-body">
+                                {{ item.contents }}
+                                <div>
+                                    <b> {{ item.users.name }} </b>
+                                    {{ item.date }}
+                                    {% if session.id == item.users.id or session.id == userId %}
+                                        <a href="/delete/{{userId}}/{{item.id}}"><span class="glyphicon glyphicon-remove"></span></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="height:30px">
+
+        </div>
+
+        <!-- 풋터 -->
+        <div>
+            <div class="container">
+                <p class="text-muted credit">Copyright © 2014 SNOWKIWI </p>
+            </div>
+        </div>
+
+        <!-- jQuery 필수 -->
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <!-- 부트스트랩 코어 자바스크립트 -->
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    </body>
+</html>

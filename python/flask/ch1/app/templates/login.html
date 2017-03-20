@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+        <title>로그인</title>
+
+        <!-- 부트스트랩 코어 CSS -->
+        <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
+        <!-- 커스텀 스타일 : 이파일을 수정하세요. -->
+        <link href="{{ url_for('static', filename='css/custom-login.css') }}" rel="stylesheet">
+
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <form class="form-signin" action="/login" method="post">
+                <h3 class="form-signin-heading">로그인</h3>
+                <input type="text" name="email" class="form-control" placeholder="이메일" autofocus>
+                <input type="password" name="password" class="form-control" placeholder="패스워드">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
+            </form>
+
+        </div>
+
+        <!-- jQuery 필수 -->
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <!-- 부트스트랩 코어 자바스크립트 -->
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    </body>
+</html>

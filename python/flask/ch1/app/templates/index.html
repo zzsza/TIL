@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+        <title>인덱스</title>
+
+        <!-- 부트스트랩 코어 CSS -->
+        <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
+        <!-- 커스텀 스타일 : 이파일을 수정하세요. -->
+        <link href="{{ url_for('static', filename='css/custom-index.css') }}" rel="stylesheet">
+
+    </head>
+
+    <body>
+
+        <div class="container">
+            <h2>등록된 사용자</h2>
+            {% for item in users %}
+                <a href="/profile/{{item.id}}">{{item.name}}</a>
+                <br/>
+            {% endfor %}
+        </div>
+
+        <!-- jQuery 필수 -->
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <!-- 부트스트랩 코어 자바스크립트 -->
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    </body>
+</html>
