@@ -20,7 +20,7 @@ def profile(userId):
     # 사용자 정보
     user = User.query.filter_by(id=userId).first()
     # app.logger.debug(user.image)
-
+x
     # 컨텐츠 리스트
     posts = Post.query.filter(Post.userid == User.id).order_by(Post.id.desc()).all();
     # app.logger.debug(len(posts))
