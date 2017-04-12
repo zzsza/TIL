@@ -17,3 +17,9 @@ sudo spctl --master-disable
 
 
 - database tool : sequel Pro
+
+### iterm2 단축키
+- command + d : 우측에 새 화면 추가
+- command + shift + d : 하단에 새 화면 추가
+- command + t : 새 창 추가
+- command + [] : 화면 이동
