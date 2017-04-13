@@ -23,3 +23,5 @@ sudo spctl --master-disable
 - command + shift + d : 하단에 새 화면 추가
 - command + t : 새 창 추가
 - command + [] : 화면 이동
+- command + w : 화면 닫기
+- command + q : iterm 종료
