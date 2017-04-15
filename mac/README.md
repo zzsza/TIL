@@ -25,3 +25,6 @@ sudo spctl --master-disable
 - command + [] : 화면 이동
 - command + w : 화면 닫기
 - command + q : iterm 종료
+
+
+- markdown 편집기 : macdown
