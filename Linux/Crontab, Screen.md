@@ -13,6 +13,8 @@ Screen 을 띄워놓고 작업 진행!
 ### Crontab
 ```{r, engine='bash', code_block_name} ...
 Crontab : 예약 작업을 수행
+/etc/crontab에 입력
+
 
 *   *   *   *   *  수행할 명령어
 ┬   ┬   ┬   ┬   ┬
@@ -27,4 +29,7 @@ Crontab : 예약 작업을 수행
 
 0 8 * * 1-5 /root/weekday.sh : → 평일(월요일~금요일) 08:00 weekday.sh을 실행
 
+
+- *.sh 파일을 실행하라고 하는 경우 env를 입력하고 나오는 환경변수를 추가해야 실행됨
+- sudo service cron restart
 ```
