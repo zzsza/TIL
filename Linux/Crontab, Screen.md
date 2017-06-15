@@ -4,7 +4,7 @@
 ```{r, engine='bash', code_block_name} ...
 Screen 을 띄워놓고 작업 진행!
 - screen --help : 도움말
-- screen dmS name : name의 스크린을 생성
+- screen -dmS name : name의 스크린을 생성
 - screen -list : 현재 스크린을 보여줌
 - screen -r xxxx.kyle(name) -> 접속!! 그 후 exit를 입력하면 세션이 나가짐
 - 세션에서 나가지 않고 화면전환은 control + a + d 를 누르면 됨..!
