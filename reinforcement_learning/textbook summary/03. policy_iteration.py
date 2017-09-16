@@ -22,10 +22,11 @@ class PolicyIteration:
 
             # 벨만 기대방정식
             for action in self.env.possible_actions:
-                next_state = self.env.state_after_action(state, action)
+                next_state = self.env.state_after_action(state, action)action)
                 reward = self.env.get_reward(state, action)
                 next_value = self.get_value(next_state)
-                value += self.get_policy(state)[action] * ( reward + self.discount_factor * next_value)
+                value += (self.get_policy(state)[action] * (reward + self.discount_factor * next_value))
+
             next_value_table[state[0]][state[1]] = round(value, 2)
 
         self.value_table = next_value_table
