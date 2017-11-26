@@ -41,12 +41,26 @@ def show_image(img, show_flag='color', size_flag='auto'):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+def crop_drag(event, x, y, flags, param):
+    global refPt, cropping, i
+
+    if event == cv2.EVENT_MOUSEMOVE:
+        print('event_mousemove!!!')
+
+        # if cropping == False:
+        #     temp = image.copy()
+        #     print(refPt)
+        #     cv2.rectangle(temp, refPt[0], refPt[1], (0, 255, 0), 2)
+        #     cv2.imshow('temp', temp)
+
+
 def crop_image(img):
     global image
     image = cv2.imread(img)
     clone = image.copy()
     cv2.namedWindow("image")
     cv2.setMouseCallback("image", click_crop)
+    # cv2.setMouseCallback("image", crop_drag)
 
     while True:
         cv2.imshow('image', image)
@@ -107,6 +121,14 @@ def zoom(img):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+def bbox(img):
+    image = cv2.imread(img)
+    r = cv2.selectROI(image)
+    crop = image[int(r[1]):int(r[1]+r[3]), int(r[0]):int(r[0]+r[2])]
+    cv2.imshow("Image", crop)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
 refPt = []
 cropping = False
 
@@ -131,3 +153,6 @@ finally:
 # show_image(selected_image)
 # zoom(selected_image)
 crop_image(selected_image)
+# bbox(selected_image)
+
+

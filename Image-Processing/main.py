@@ -18,7 +18,7 @@ parser.add_argument("--crop_mode", help="crop_mode : 'True' or 'False' ", defaul
 
 args = parser.parse_args()
 
-image_extension = ('jpg', 'jpeg', 'png')  
+image_extension = ('jpg', 'jpeg', 'png')
 current_folder = args.folder_path
 image_file = [i for i in os.listdir(current_folder) if i.endswith(image_extension) == True]
 print("current folder path : {current_folder}\nimage 개수 : {len_image}\nimage file : {image_file}".format(
