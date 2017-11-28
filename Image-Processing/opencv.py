@@ -129,6 +129,47 @@ def bbox(img):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+
+def view_move(image_file, now_order, len_image):
+    '''
+    현재 폴더의 목록을 받아오고 mouse callback 함수를 추가해보기
+    1. 현재 폴더의 목록은 받아오는 것으로 처리
+    image_file : 경로
+    now_order : 현재 이미지의 순서
+    len_image : 이미지 개수
+    :return: 
+    '''
+    image = cv2.imread(image_file[int(now_order)])
+    cv2.imshow("viewer", image)
+    now_order = int(now_order)
+
+    while True:
+        key = cv2.waitKey(1) & 0xFF
+        cv2.namedWindow("viewer")
+
+        if key == 27:
+            quit()
+        elif key == 2:
+            if now_order <= 0:
+                now_order = now_order + len_image - 1
+            else:
+                now_order -= 1
+            image_path = image_file[now_order]
+            print(image_path)
+            image = cv2.imread(image_path)
+            cv2.imshow("viewer", image)
+
+        elif key == 3:
+            if now_order+1 >= len_image:
+                now_order = now_order - len_image + 1
+            else:
+                now_order += 1
+            image_path = image_file[now_order]
+            print(image_path)
+            image = cv2.imread(image_path)
+            cv2.imshow("viewer", image)
+
+
 refPt = []
 cropping = False
 
@@ -140,19 +181,20 @@ print("current folder path : {current_folder}\nimage 개수 : {len_image}\nimage
     current_folder=current_folder, len_image=len(image_file), image_file=image_file
 ))
 
-a = raw_input("몇번째 이미지를 보여드릴까요?\n")
+input = raw_input("몇번째 이미지를 보여드릴까요?\n")
+now_order = int(input)-1
 try:
-    selected_image = image_file[int(a)-1]
+    selected_image = image_file[int(input)-1]
     print(selected_image)
 except IndexError:
     print("1부터 {n}까지의 숫자를 입력해주세요".format(n=len(image_file)))
 finally:
-    if int(a)<=0:
+    if int(input)<=0:
         print("양수를 입력해주세요")
 
 # show_image(selected_image)
 # zoom(selected_image)
-crop_image(selected_image)
+# crop_image(selected_image)
 # bbox(selected_image)
-
+view_move(image_file, now_order, len(image_file))
 
