@@ -170,10 +170,74 @@ def view_move(image_file, now_order, len_image):
             cv2.imshow("viewer", image)
 
 
+
+def drag_zoom(event, x, y, flags, param):
+    global refPt, cropping, direction
+
+    if event == cv2.EVENT_LBUTTONDOWN:
+        refPt = [(x, y)]
+        cropping = True
+
+    # elif event == cv2.EVENT_MOUSEMOVE:
+    #     if cropping == True:
+    #         direction.append((x, y))
+    #         print(direction)
+
+    elif event == cv2.EVENT_LBUTTONUP:
+        refPt.append((x, y))
+        cropping = False
+
+        cv2.rectangle(image, refPt[0], refPt[1], (0, 255, 0), 2)
+        print(refPt[0], refPt[1])
+        cv2.imshow("image", image)
+
+def drag_zoom_viewer(img):
+    '''
+    드래그하면서 줌
+    img : 오리지날 이미지
+    copy_img ? 이건 그냥 오리지날 이미지에서 카피하면되지 않남
+    mouse
+    마우스가 드래그하는 좌표를 찍어서 -> 그 부분으로 사이즈를 구성해 보이게 하기
+    :return: 
+    '''
+    global image, copy_img
+
+    image = cv2.imread(img)
+    y, x = image.shape[:2]
+    copy_img = image.copy()
+    cv2.namedWindow("image")
+    cv2.setMouseCallback("image", drag_zoom)
+    print('x, y', x, y)
+    while True:
+        cv2.imshow('image', image)
+        key = cv2.waitKey(1) & 0xFF
+
+        if key == ord("r"):
+            image = image.copy()
+
+        elif key == ord("c"):
+            if len(refPt) == 2:
+                copy = copy_img[refPt[0][1]:refPt[1][1], refPt[0][0]:refPt[1][0]]
+                # fx, fy를 원본 / copy로 나눠서 설정하게 하도록 해보자
+                cv2.resize(copy, (x, y), fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+                cv2.imshow("image", copy)
+                cv2.waitKey(0)
+                cv2.destroyAllWindows()
+
+    print(refPt)
+    # if len(refPt) == 2:
+    #     copy = copy_img[refPt[0][1]:refPt[1][1], refPt[0][0]:refPt[1][0]]
+    #     # fx, fy를 원본 / copy로 나눠서 설정하게 하도록 해보자
+    #     cv2.resize(copy, (x, y), fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+    #     cv2.imshow("image", copy)
+    #     cv2.waitKey(0)
+    #     cv2.destroyAllWindows()
+
 refPt = []
+# direction = []
 cropping = False
 
-image_extension = ('jpg','jpeg','png') # 이미지 확장자
+image_extension = ('jpg', 'jpeg', 'png') # 이미지 확장자
 current_folder = os.getcwd() # 현재 폴더
 print(current_folder)
 image_file = [i for i in os.listdir(current_folder) if i.endswith(image_extension)==True]
@@ -196,5 +260,6 @@ finally:
 # zoom(selected_image)
 # crop_image(selected_image)
 # bbox(selected_image)
-view_move(image_file, now_order, len(image_file))
+# view_move(image_file, now_order, len(image_file))
+drag_zoom_viewer(selected_image)
 
