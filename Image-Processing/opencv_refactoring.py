@@ -93,6 +93,7 @@ def crop_callback(event, x, y, flags, param):
         cv2.imshow("viewer", image)
 
 
+
 def show_type(style):
     if style == 'color':
         return 1
@@ -133,6 +134,7 @@ def bbox(img):
 
 refPt = []
 cropping = False
+zoom = False
 
 image_extension = ('jpg', 'jpeg', 'png')
 current_folder = os.getcwd()
@@ -147,15 +149,18 @@ else:
     ))
 
     input = raw_input("몇번째 이미지를 보여드릴까요?\n")
-    now_order = int(input)-1
     try:
+        now_order = int(input) - 1
         selected_image = image_files[int(input)-1]
         print(selected_image)
     except IndexError:
         print("1부터 {n}까지의 숫자를 입력해주세요".format(n=len(image_files)))
-    finally:
+        
+    else:
         if int(input) <= 0:
             print("양수를 입력해주세요")
+        else:
+            print('error')
 
     show_image(image_files, now_order=now_order, len_image=len(image_files))
 

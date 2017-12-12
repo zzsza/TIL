@@ -176,6 +176,7 @@ def drag_zoom(event, x, y, flags, param):
 
     if event == cv2.EVENT_LBUTTONDOWN:
         refPt = [(x, y)]
+        print('aa')
         cropping = True
 
     # elif event == cv2.EVENT_MOUSEMOVE:
@@ -186,6 +187,7 @@ def drag_zoom(event, x, y, flags, param):
     elif event == cv2.EVENT_LBUTTONUP:
         refPt.append((x, y))
         cropping = False
+        print('bb')
 
         cv2.rectangle(image, refPt[0], refPt[1], (0, 255, 0), 2)
         print(refPt[0], refPt[1])
@@ -213,14 +215,16 @@ def drag_zoom_viewer(img):
         key = cv2.waitKey(1) & 0xFF
 
         if key == ord("r"):
-            image = image.copy()
-
+            image = copy_img.copy()
+            print('b')
         elif key == ord("c"):
+            print('c')
             if len(refPt) == 2:
                 copy = copy_img[refPt[0][1]:refPt[1][1], refPt[0][0]:refPt[1][0]]
                 # fx, fy를 원본 / copy로 나눠서 설정하게 하도록 해보자
                 cv2.resize(copy, (x, y), fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
                 cv2.imshow("image", copy)
+                print('d')
                 cv2.waitKey(0)
                 cv2.destroyAllWindows()
 
