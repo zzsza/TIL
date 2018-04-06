@@ -56,3 +56,9 @@ CMD ["nginx"]
 	- ```RUN```은 한줄이 이미지 하나로 빌드됨
 - ```CMD``` : 컨테이너가 시작되엇을 때 실행할 실행 파일 또는 쉘 스크립트
 - ```WORKDIR``` : CMD에서 설정한 실행 파일이 실행될 디렉터리 
+
+### Delete all containers
+- ```docker rm $(docker ps -a -q)```
+
+### Delete all images
+- ```docker rmi $(docker images -q)```
