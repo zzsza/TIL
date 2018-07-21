@@ -12,12 +12,14 @@ sudo spctl --master-disable
 ~~~
 - 그 후, app market에서 update
 
+### zsh setting
 - zsh 설치 [진한이형 블로그](http://hjh5488.tistory.com/2)
 - 폰트가 깨지는 경우 [meslo](https://github.com/powerline/fonts/blob/master/Meslo/Meslo%20LG%20M%20DZ%20Regular%20for%20Powerline.otf) 설치 후 설정
-- open . 입력하면 finder 열림
+- ```open .``` 입력하면 finder 열림
 
-
-- database tool : sequel Pro
+### Database tool
+- [Sequel Pro](https://www.sequelpro.com/) : MySQL
+- [PSequel](http://www.psequel.com/) : PostgreSQL용이라고 하는데 아직 많이 쓰는진 모르겠음
 
 ### iterm2 단축키
 - command + d : 우측에 새 화면 추가
@@ -27,5 +29,27 @@ sudo spctl --master-disable
 - command + w : 화면 닫기
 - command + q : iterm 종료
 
+### markdown 편집기
+- macdown, typora
 
-- markdown 편집기 : macdown
+### Vim 명령어
+- [블로그 참고](https://zzsza.github.io/development/2018/07/20/vim-tips/)
+
+### Vim 명령모드시 자동 영문전환
+```
+brew install cmake
+git clone https://github.com/vovkasm/input-source-switcher.git
+cd input-source-switcher
+mkdir build && cd build
+cmake ..
+make
+make install
+```
+
+- ```.vimrc```에 설정 추가
+
+```
+if filereadable('/usr/local/lib/libInputSourceSwitcher.dylib')
+    autocmd InsertLeave * call libcall('/usr/local/lib/libInputSourceSwitcher.dylib', 'Xkb_Switch_setXkbLayout', 'com.apple.keylayout.ABC')
+endif
+```
