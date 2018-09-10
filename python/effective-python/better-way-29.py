@@ -47,7 +47,7 @@ class FixedResistance(Resistor):
     def ohms(self, ohms):
         if hasattr(self, "_ohms"):
             raise AttributeError("Can't set attribute")
-        self._ohms = ohms
+        self._ohms = 1
 
 
 
