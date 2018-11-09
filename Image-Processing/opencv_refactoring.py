@@ -148,7 +148,7 @@ else:
         current_folder=current_folder, len_image=len(image_files), image_file=image_files
     ))
 
-    input = raw_input("몇번째 이미지를 보여드릴까요?\n")
+    input = input("몇번째 이미지를 보여드릴까요?\n")
     try:
         now_order = int(input) - 1
         selected_image = image_files[int(input)-1]
