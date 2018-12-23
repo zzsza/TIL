@@ -1,32 +1,33 @@
-# Today I Learned
+## Today I Learned
+- [![HitCount](http://hits.dwyl.io/zzsza/TIL.svg)](http://hits.dwyl.io/zzsza/TIL)
 - 시작일 : 2017년 2월 13일
 
-
-# 작성규칙
-- 언어나 기술명으로 폴더를 만든다. (root에 문서를 만들지 않는다.)
-- 이미 과거에 작성했던 repo가 있다면 해당 repo를 링크걸기
+## 작성규칙
+- 언어나 기술명으로 폴더를 만든다(root에 문서를 만들지 않는다)
 - python의 경우 ipynb으로 생성, python이 아닌 다른 언어라면 md파일 권장
 - 파일명은 영어로
-- README.md에 추가하기(index처럼)
 
-# Index
+## Folder Structure
+```
+├── Google_Cloud_Platform
+├── Image-Processing
+├── Linux
+├── SQL_performance_tuning
+├── Tableau
+├── Tensorflow
+├── deep_learning_from_scratch
+├── docker
+├── hands-on-machine-learning
+├── information_graphics
+├── mac
+├── network
+├── nlp
+├── python
+├── pytorch
+├── reinforcement_learning
+├── scala
+└── scikit-learn
+```
 
-- [Datascience School](https://github.com/zzsza/Datascience_School)
-
-- [OpenCV](https://github.com/zzsza/OpenCV)
-
-- [NodeJS](https://github.com/zzsza/nodeJS_camp)
-
-- [Deep Learning Paper](https://github.com/zzsza/Deep-Learning-Papers-Reading-Roadmap)
-
-- [Google Cloud Platform](https://github.com/zzsza/TIL/tree/master/Google%20Cloud%20Platform)
-
-- [python](https://github.com/zzsza/TIL/tree/master/python)
-
-- [mac](https://github.com/zzsza/TIL/tree/master/mac)
-
-
-
-
-# Reference
+## Reference
 [유림님 TIL](https://github.com/milooy/TIL#today-i-learned)
