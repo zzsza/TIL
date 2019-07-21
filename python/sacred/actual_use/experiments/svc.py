@@ -1,0 +1,31 @@
+from sklearn import svm, datasets, model_selection
+from sacred import Experiment
+from sacred.observers import FileStorageObserver
+
+ex = Experiment('svc')
+ex.observers.append(FileStorageObserver.create('my_runs'))
+
+
+@ex.config
+def cfg():
+    C = 1.0
+    gamma = 0.7
+    kernel = "rbf"
+    seed = 42
+
+
+@ex.capture
+def get_model(C, gamma, kernel):
+    return svm.SVC(C=C, kernel=kernel, gamma=gamma)
+
+
+@ex.automain
+def run(_log):
+    X, y = datasets.load_breast_cancer(return_X_y=True)
+    _log.info("[INFO] Now split dataset")
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.2)
+    clf = get_model()
+    clf.fit(X_train, y_train)
+    _log.info("[INFO] End Fit!")
+    return clf.score(X_test, y_test)
+
